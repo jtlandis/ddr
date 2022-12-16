@@ -126,20 +126,20 @@ dispatch <- function() {
 }
 
 
-eval_signature <- function(sig, frame) {
-  sig_evaled <- lapply(sig, eval, envir = frame)
-  sig_class <- lapply(sig_evaled, class)
-  is_super <- vapply(sig_evaled, inherits, what = "mod_dispatch_super", FUN.VALUE = logical(1))
-  if (any(is_super)) {
-    sig_evaled[is_super] <- lapply(sig_evaled, `[[`, 1)
-    sig_class[is_super] <- lapply(sig_evaled, `[[`, 2) 
-  }
-
-  list(
-    sig_evaled,
-    sig_class
-  )
-}
+# eval_signature <- function(sig, frame) {
+#   sig_evaled <- lapply(sig, eval, envir = frame)
+#   sig_class <- lapply(sig_evaled, class)
+#   is_super <- vapply(sig_evaled, inherits, what = "mod_dispatch_super", FUN.VALUE = logical(1))
+#   if (any(is_super)) {
+#     sig_evaled[is_super] <- lapply(sig_evaled, `[[`, 1)
+#     sig_class[is_super] <- lapply(sig_evaled, `[[`, 2) 
+#   }
+# 
+#   list(
+#     sig_evaled,
+#     sig_class
+#   )
+# }
 
 #' @export
 super <- function(from, to) {
@@ -315,7 +315,7 @@ find_method <- function(genenv, disp_args, signature_classes, gen_name) {
     }
   }
   
-  return(generic)
+  invisible(generic)
   
 }
 
