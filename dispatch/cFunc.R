@@ -23,11 +23,14 @@ box::use(src = ./src)
   }
 }
 
-# #
-# hello_world <- function(name) {
-#   .Call(hello_world_, name)
-# }
-
+#' dispatch_call
+#'
+#' forumlate the correct call based on methods registered through
+#' The dispatch module
+#' 
+#' @param generic The generic function
+#' @param envir Where the dispatch call is to be evaluated
+#' @param genenv The generic environement where all methods are registered
 #' @export
 dispatch_call <- function(generic, envir, genenv) {
   .Call(method_call_, generic, envir, genenv, obj_class)
