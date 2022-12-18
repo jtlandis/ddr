@@ -1,4 +1,4 @@
 
 
 #' @export
-box::use(./dispatch/dispatch[...])
+box::use(./dispatch[...])
